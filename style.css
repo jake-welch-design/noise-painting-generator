@@ -8,6 +8,14 @@ html, body {
   padding: 0;
 }
 
+p {
+  font-family: 'Satoshi'; 
+  font-size: 14px;
+  color: rgb(255,255,255); 
+  margin-top: 10; 
+  padding-left: 5px;
+}
+
 canvas {
   display: block;
 }
@@ -17,7 +25,7 @@ canvas {
   top: 10px;
   right: 20px; 
   font-family: 'Satoshi', Arial, sans-serif; 
-  font-size: 24px; 
+  font-size: 18px; 
   color: #ffffff; 
   text-decoration: none; 
 }
@@ -27,14 +35,16 @@ canvas {
   color:red;
 }
 
+/* 
 #control-panel h2 {
   font-family: 'Satoshi', Arial, sans-serif;
   font-size: 18px;
   color: black;
   margin-top: 0;
-  margin-left: 5px;
-  margin-bottom: 0px; 
-}
+  margin-left: 0;
+  margin-bottom: 0; 
+  user-select: none;
+} */
 
 .sliderStyle{
   width: 160px;
@@ -84,5 +94,4 @@ button:hover {
 #control-panel {
   padding: 5px;
   max-width: 500px; 
-  user-select: none;
 }

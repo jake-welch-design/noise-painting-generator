@@ -99,10 +99,12 @@ function setupUI() {
     applyGrayscale = !applyGrayscale;
     refreshCanvas(); 
   });
-  monochromeButton.touchStarted(() => { 
+ monochromeButton.touchStarted((event) => { 
+    event.preventDefault(); 
     isAdjusting = true;
     applyGrayscale = !applyGrayscale;
     refreshCanvas(); 
+    return false; 
   });
 
   monochromeButton.mouseReleased(() => finishAdjusting());

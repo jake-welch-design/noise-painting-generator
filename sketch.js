@@ -130,10 +130,16 @@ function setupUI() {
   refreshButton.parent('slider-container');
 
   //SAVE IMAGE BUTTON
-  saveImgButton = createButton('Save');
-  saveImgButton.position(10, 255);
-  saveImgButton.mousePressed(() => save('noise-painting.jpeg'));
-  saveImgButton.parent('slider-container');
+saveImgButton = createButton('Save');
+saveImgButton.position(10, 255);
+saveImgButton.mousePressed(() => {
+  if (imgEffect) {
+    save(imgEffect, 'noise-painting.jpeg');
+  } else {
+    console.log('No image effect to save');
+  }
+});
+saveImgButton.parent('slider-container');
 
   //CHOOSE FILE BUTTON
   chooseFileButton = createButton('Choose file');

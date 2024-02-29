@@ -1,7 +1,7 @@
 let img;
 let imgEffect;
 let lowResImg;
-let isAdjusting = false; // Flag to indicate if the resolution should be temporarily lowered
+let isAdjusting = false; 
 
 let font;
 let windowRatio;
@@ -13,9 +13,8 @@ let noiseTime = 0;
 let noiseScaleSlider, noiseAmountSlider, noiseTimeSlider, refreshButton, saveImgButton, chooseFileButton, chooseFileInput;
 let applyGrayscale = false; 
 
-
 function preload() {
-  font = loadFont('fonts/Satoshi-Regular.otf'); // Ensure the font path is correct
+  font = loadFont('fonts/Satoshi-Regular.otf'); 
 }
 
 function setup() {
@@ -25,41 +24,61 @@ function setup() {
   frameRate(12);
   background(0);
 
-  setupUI(); // Set up UI elements
+  setupUI(); 
 }
 
 function setupUI() {
   textAlign(CENTER, CENTER);
   textFont(font);
-  textSize(24);
+  textSize(18);
   fill(255);
 
   text("Drag & drop your image\nor click 'Choose file'", windowWidth / 2, windowHeight / 2);
+  
+  document.getElementById('slider-container').innerHTML = '';
 
+  let yOffset = -10; 
+
+  //NOISE AMOUNT
+  let noiseAmountText = document.getElementById('noiseAmountText');
   noiseAmountSlider = createSlider(0, 500, 0, 1);
-  noiseAmountSlider.position(10, 75);
+
+  noiseAmountSlider.position(10, noiseAmountText.offsetTop + noiseAmountText.offsetHeight + yOffset);
+  
   noiseAmountSlider.input(() => refreshCanvas());
   noiseAmountSlider.mousePressed(() => isAdjusting = true);
   noiseAmountSlider.mouseReleased(() => finishAdjusting());
+
   noiseAmountSlider.addClass('sliderStyle');
-  noiseAmountSlider.parent('slider-container');
+  noiseAmountSlider.parent('slider-container'); 
   
+  //NOISE SCALE
+  let noiseScaleText = document.getElementById('noiseScaleText');
   noiseScaleSlider = createSlider(0.001, 0.1, 0.001,0.001);
-  noiseScaleSlider.position(10, 123);
+  
+  noiseScaleSlider.position(10, noiseScaleText.offsetTop + noiseScaleText.offsetHeight + yOffset);
+  
   noiseScaleSlider.input(() => refreshCanvas());
   noiseScaleSlider.mousePressed(() => isAdjusting = true);
   noiseScaleSlider.mouseReleased(() => finishAdjusting());
+  
   noiseScaleSlider.addClass('sliderStyle');
-  noiseScaleSlider.parent('slider-container');
+  noiseScaleSlider.parent('slider-container'); 
 
+  //NOISE TIME
+  let noiseTimeText = document.getElementById('noiseTimeText');
   noiseTimeSlider = createSlider(0, 100, 0, 1);
-  noiseTimeSlider.position(10, 170);
+  
+  noiseTimeSlider.position(10, noiseTimeText.offsetTop + noiseTimeText.offsetHeight + yOffset);
+  
   noiseTimeSlider.input(() => refreshCanvas());
   noiseTimeSlider.mousePressed(() => isAdjusting = true);
   noiseTimeSlider.mouseReleased(() => finishAdjusting());
-  noiseTimeSlider.addClass('sliderStyle');
-  noiseTimeSlider.parent('slider-container');
 
+  noiseTimeSlider.addClass('sliderStyle');
+  noiseTimeSlider.parent('slider-container');  
+
+  //MONOCHROME BUTTON
   monochromeButton = createButton('Monochrome');
   monochromeButton.position(10, 195);
   monochromeButton.mousePressed(() => {
@@ -70,6 +89,7 @@ function setupUI() {
   monochromeButton.mouseReleased(() => finishAdjusting());
   monochromeButton.parent('slider-container');
 
+  //RESET BUTTON
   refreshButton = createButton('Reset');
   refreshButton.position(10, 225);
   refreshButton.mousePressed(() => {
@@ -79,11 +99,13 @@ function setupUI() {
   refreshButton.mouseReleased(() => finishAdjusting());
   refreshButton.parent('slider-container');
 
+  //SAVE IMAGE BUTTON
   saveImgButton = createButton('Save');
   saveImgButton.position(10, 255);
   saveImgButton.mousePressed(() => save('noise-painting.jpeg'));
   saveImgButton.parent('slider-container');
 
+  //CHOOSE FILE BUTTON
   chooseFileButton = createButton('Choose file');
   chooseFileButton.position(10, 285);
   chooseFileButton.mousePressed(() => chooseFileInput.elt.click());
@@ -120,7 +142,7 @@ function gotFile(file) {
 }
 
 function handleFile(file) {
-  gotFile(file); // Reuse the gotFile function for consistency
+  gotFile(file); 
 }
 
 function draw() {
@@ -140,7 +162,7 @@ function clearBackground() {
 
 function finishAdjusting() {
   isAdjusting = false;
-  refreshCanvas(); // This will ensure a redraw with full effects
+  refreshCanvas(); 
 }
 
 function displayImage() {
@@ -221,5 +243,6 @@ function offsetPixels(originalImg) {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  setupUI(); 
   refreshCanvas();
 }

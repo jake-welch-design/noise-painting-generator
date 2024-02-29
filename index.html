@@ -11,16 +11,23 @@
 <body>
   <a href="https://www.instagram.com/jakewelch.design/" target="_blank" id="instagramLink">jakewelch.design</a>
 
-  <div id="control-panel" style="position: absolute; top: 10px; left: 10px; z-index: 10; padding: 10px;">
-    <h2 style="font-family: 'Satoshi', Arial, sans-serif; font-size: 18px; color: rgb(255, 255, 255); margin-top: 0;">NOISE PAINTING GENERATOR</h2>
-    <!-- Slider will be dynamically inserted below this line -->
-      <p style="font-family: 'Satoshi', Arial, sans-serif; font-size: 12px; color: rgb(255,255,255); margin-top: 10; padding-left: 5px;">
-        Noise amount
-        <br><br><br>
-        Noise scale
-        <br><br><br>
-        Noise time
-      </p>
+  <div id="control-panel" style="position: absolute; top: -5px; left: 10px; z-index: 10; padding: 10px;">
+    
+    <div class="slider-group">
+      <p id="noiseAmountText" style = "user-select: none;">Noise amount<br><br></p>
+      <!-- Slider goes here -->
+    </div>
+
+    <div class="slider-group">
+      <p id="noiseScaleText" style = "user-select: none;">Noise scale<br><br></p>
+      <!-- Slider goes here -->
+    </div>
+
+    <div class="slider-group">
+      <p id="noiseTimeText" style = "user-select: none;">Noise time<br><br></p>
+      <!-- Slider goes here -->
+    </div>
+
     <div id="slider-container"></div>
 </div>
 

@@ -46,8 +46,12 @@ function setupUI() {
   noiseAmountSlider.position(10, noiseAmountText.offsetTop + noiseAmountText.offsetHeight + yOffset);
   
   noiseAmountSlider.input(() => refreshCanvas());
+
   noiseAmountSlider.mousePressed(() => isAdjusting = true);
+  noiseAmountSlider.touchStarted(() => isAdjusting = true); 
+
   noiseAmountSlider.mouseReleased(() => finishAdjusting());
+  noiseAmountSlider.touchEnded(() => finishAdjusting()); 
 
   noiseAmountSlider.addClass('sliderStyle');
   noiseAmountSlider.parent('slider-container'); 
@@ -59,8 +63,12 @@ function setupUI() {
   noiseScaleSlider.position(10, noiseScaleText.offsetTop + noiseScaleText.offsetHeight + yOffset);
   
   noiseScaleSlider.input(() => refreshCanvas());
+
   noiseScaleSlider.mousePressed(() => isAdjusting = true);
+  noiseScaleSlider.touchStarted(() => isAdjusting = true); 
+
   noiseScaleSlider.mouseReleased(() => finishAdjusting());
+  noiseScaleSlider.touchEnded(() => finishAdjusting()); 
   
   noiseScaleSlider.addClass('sliderStyle');
   noiseScaleSlider.parent('slider-container'); 
@@ -72,8 +80,12 @@ function setupUI() {
   noiseTimeSlider.position(10, noiseTimeText.offsetTop + noiseTimeText.offsetHeight + yOffset);
   
   noiseTimeSlider.input(() => refreshCanvas());
+
   noiseTimeSlider.mousePressed(() => isAdjusting = true);
+  noiseTimeSlider.touchStarted(() => isAdjusting = true); 
+
   noiseTimeSlider.mouseReleased(() => finishAdjusting());
+  noiseTimeSlider.touchEnded(() => finishAdjusting()); 
 
   noiseTimeSlider.addClass('sliderStyle');
   noiseTimeSlider.parent('slider-container');  
@@ -81,12 +93,21 @@ function setupUI() {
   //MONOCHROME BUTTON
   monochromeButton = createButton('Monochrome');
   monochromeButton.position(10, 195);
+
   monochromeButton.mousePressed(() => {
     isAdjusting = true;
     applyGrayscale = !applyGrayscale;
     refreshCanvas(); 
   });
+  monochromeButton.touchStarted(() => { 
+    isAdjusting = true;
+    applyGrayscale = !applyGrayscale;
+    refreshCanvas(); 
+  });
+
   monochromeButton.mouseReleased(() => finishAdjusting());
+  monochromeButton.touchEnded(() => finishAdjusting()); 
+
   monochromeButton.parent('slider-container');
 
   //RESET BUTTON
@@ -96,7 +117,14 @@ function setupUI() {
     isAdjusting = true
     reset();
   });
+  refreshButton.touchStarted(() => { 
+    isAdjusting = true
+    reset();
+  });
+  
   refreshButton.mouseReleased(() => finishAdjusting());
+  refreshButton.touchEnded(() => finishAdjusting()); 
+
   refreshButton.parent('slider-container');
 
   //SAVE IMAGE BUTTON
